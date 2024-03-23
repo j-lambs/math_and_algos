@@ -1,0 +1,6 @@
+"0","unique(weather_forecasts$city) %>% "
+"0","  length()"
+"1","[1]"
+"1"," 160"
+"1","
+"

@@ -1,0 +1,111 @@
+---
+title: "Check-in 2"
+author: "Jack Rellamas"
+date: "02-28-24"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+---
+
+Remember, **follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
+
+### Collaborators
+
+INSERT NAMES OF ANY COLLABORATORS
+
+## A. Flights Data
+
+**1.** For this lab, we'll be using the `flights` data. You can load this data using the following code:
+
+```{r}
+library(nycflights13)
+data(flights)
+library(tidyverse)
+```
+
+**2.** Use the `mutate()` function to turn `origin` into a factor.
+
+```{r}
+flights <- mutate(flights, origin = factor(origin))
+```
+
+**3.** Compute the mean `arr_delay` for each origin airport. Which airport has the longest delays on average? You can drop missing rows.
+
+```{r}
+t <- flights %>% 
+  group_by(origin) %>% 
+  summarize(mean_arr_delay_origin = mean(arr_delay, na.rm = TRUE)) %>% 
+  ungroup()
+t
+```
+
++----------+---------------------------+
+| **\      | **mean_arr_delay_origin** |
+| origin** |                           |
++:=========+:==========================+
+|          |                           |
++----------+---------------------------+
+
+|       |     |          |
+|:------|:----|:---------|
+| **1** | EWR | 9.107055 |
+| **2** | JFK | 5.551481 |
+| **3** | LGA | 5.783488 |
+
+**4.** Use the `mutate()` function to turn `month` into a factor.
+
+```{r}
+flights <- mutate(flights, month = factor(month))
+```
+
+**5.** Compute the mean `arr_delay` by month. What do you notice?
+
+```{r}
+t <- flights %>% 
+  group_by(month) %>% 
+  summarize(mean_arr_delay_month = mean(arr_delay, na.rm = TRUE)) %>% 
+  ungroup()
+t
+```
+
++---------+--------------------------+
+| **\     | **mean_arr_delay_month** |
+| month** |                          |
++:========+:=========================+
+|         |                          |
++---------+--------------------------+
+
+|        |     |            |
+|:-------|:----|:-----------|
+| **1**  | 1   | 6.1299720  |
+| **2**  | 2   | 5.6130194  |
+| **3**  | 3   | 5.8075765  |
+| **4**  | 4   | 11.1760630 |
+| **5**  | 5   | 3.5215088  |
+| **6**  | 6   | 16.4813296 |
+| **7**  | 7   | 16.7113067 |
+| **8**  | 8   | 6.0406524  |
+| **9**  | 9   | -4.0183636 |
+| **10** | 10  | -0.1670627 |
+| **11** | 11  | 0.4613474  |
+| **12** | 12  | 14.8703553 |
+
+**6.** Compute the mean `arr_delay` by month AND `origin`. What do you notice?
+
+```{r}
+t <- flights %>% 
+  group_by(month, origin) %>% 
+  summarize(mean_arr_delay_month_and_origin = mean(arr_delay, na.rm = TRUE)) %>% 
+  ungroup()
+t
+```
+
+EWR is usually has more delays than LGA and JFK.
+
+All 3 of the airports experience a major increase in traffic and delays in June and July.
+
+The best time to travel, if you want to avoid delays, is during the fall.
+
+EWR has a significantly higher mean delay time in January than the other 2 airports.

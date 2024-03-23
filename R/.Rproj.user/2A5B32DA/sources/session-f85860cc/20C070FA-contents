@@ -1,0 +1,181 @@
+---
+title: "Lab 4: Data Visualization"
+author: "Jack Rellamas"
+date: "02-29-2024"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+---
+
+Remember, **follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
+
+### Collaborators
+
+INSERT NAMES OF ANY COLLABORATORS
+
+```{r}
+# LOAD ANY RELEVANT PACKAGES HERE
+library(tidyverse)
+```
+
+## A. Basic visualizations
+
+For this portion, we'll be using the `palmerpenguins` data. Use the following code to load the data.
+
+```{r}
+library(palmerpenguins)
+data(penguins)
+```
+
+1.  Create and interpret a histogram of `bill_length_mm` using base R code. Be sure to use meaningful axis labels and titles.
+
+```{r}
+hist(x = penguins$bill_length_mm, 
+     breaks = 20,
+     main = "Distribution of Penguin Bill Length", 
+     xlab = "Bill Length (mm)")
+```
+
+2.  Create and interpret a histogram of `bill_length_mm` using ggplot2. Be sure to use meaningful axis labels and titles.
+
+```{r}
+ggplot(data = penguins, 
+       aes(x = bill_length_mm)) + 
+  geom_histogram() +
+  xlab("Bill Length (mm)") +
+  ggtitle("Distribution of Penguin Bill Length")
+  
+```
+
+3.  Create and interpret a scatterplot of `bill_length_mm` versus `bill_depth_mm` using base R code. Be sure to use meaningful axis labels and titles.
+
+```{r}
+# filter for completed cases of bill_length vs bill_depth
+clean_penguins <- penguins %>% 
+  filter(!is.na(bill_depth_mm) & !is.na(bill_length_mm))
+
+plot(x = penguins$bill_depth_mm, y = penguins$bill_length_mm,
+     main = "Penguin Bill Length vs. Bill Depth",
+     xlab = "Bill Depth (mm)",
+     ylab = "Bill Length (mm)",
+     col = "red3",
+     type = "p")
+```
+
+4.  Create and interpret a scatterplot of `bill_length_mm` versus `bill_depth_mm` using ggplot2. Be sure to use meaningful axis labels and titles.
+
+```{r}
+ggplot(data = clean_penguins, 
+       aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point(alpha = 0.5, color = "cyan4") +
+  xlab("Bill Depth (mm)") +
+  ylab("Bill Length (mm)") +
+  ggtitle("Penguin Bill Length vs. Bill Depth")
+```
+
+5.  Update your `ggplot2` scatterplot of `bill_length_mm` versus `bill_depth_mm` using ggplot2 so that the color of a point represents the corresponding penguin's species. What do you notice?
+
+```{r}
+ggplot(data = clean_penguins, 
+       aes(x = bill_depth_mm, y = bill_length_mm, color = clean_penguins$species)) + 
+  geom_point(alpha = 0.5) +
+  xlab("Bill Depth (mm)") +
+  ylab("Bill Length (mm)") +
+  ggtitle("Penguin Bill Length vs. Bill Depth")
+```
+
+## B. Analyzing trends in San Jose rental prices
+
+For this component, you will be exploring and visualizing data on Craigslist apartment rental postings in the Bay Area. The data are available [here](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-05/rent.csv) from Tidy Tuesday, as prepared by [Dr. Kate Pennington](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-07-05/readme.md). Note that you can use links within `read_csv()` to read online .csv files. I recommend saving a version of the unprocessed .csv on your machine in a `data` subfolder within your project folder so you will be able to work offline.
+
+```{r, include=FALSE}
+rent <- read.csv("/Users/rellamas/where is math stuff/R/data/rent.csv")
+```
+
+6.  How many 1 bedroom listings from Santa Clara county are in this dataset?
+
+```{r}
+sc_onebed <- filter(rent, beds == 1 & county == "santa clara")
+table(sc_onebed$beds)
+```
+
+There are 12455 1 bedroom listings from Santa Clara county in this dataset.
+
+6.  What is the median price for a 1 bedroom listing in Santa Clara county in 2018?
+
+```{r}
+sc_onebed_2018 <- filter(sc_onebed, year == 2018)
+summary(sc_onebed_2018)
+```
+
+The median price for a 1 bedroom listing in Santa Clara in 2018 is \$2095.
+
+6.  Which county has the highest median price for a 1 bedroom listing in 2018?
+
+```{r}
+onebed_2018 <- rent %>% filter(beds == 1 & year == 2018)
+onebed_2018 <- mutate(onebed_2018, county = factor(county))
+t <- aggregate(price~county, data=onebed_2018, summary) #  #https://www.tutorialspoint.com/how-to-find-the-median-for-factor-levels-in-r
+View(t)
+```
+
+San Francisco is the county with the highest median price of rent at \$3000.
+
+7.  Create two histograms for the prices of 1 bedroom listings in Santa Clara county in 2005 and 2018. Compare and discuss.
+
+```{r}
+sc_1b_2005 <- rent %>% filter(beds == 1 & year == 2005 & county == "santa clara")
+ggplot(data = sc_1b_2005,
+       aes(x=price)) +
+  geom_histogram()
+```
+
+```{r}
+sc_1b_2018 <- rent %>% filter(beds == 1 & year == 2018 & county == "santa clara")
+ggplot(data = sc_1b_2018,
+       aes(x=price)) +
+  geom_histogram()
+```
+
+The most common price for rent in 2005 was around \$800. In 2018, the most common pricing for a one bedroom apartment in Santa Clara county had jumped to around \$2000. \The price distribution in 2005 is more right skewed meaning there were more apartment available on the affordable side of the market. The price distribution in 2018 is more normally distributed.
+
+8.  Create and interpret a line plot with year on the x-axis and median price for a 1 bedroom apartment for Santa Clara county on the y-axis from 2000 to 2018.
+
+```{r}
+sc_median_price_change <- sc_onebed %>% 
+  group_by(year) %>% 
+  summarise(median_price = median(price))
+ggplot(data = sc_median_price_change, 
+       aes(x = year, y = median_price)) +
+  geom_line()
+```
+
+The median price of a one bedroom apartment in Santa Clara county has been rapidly and steadily been increasing since the beginning of the 2000's.
+
+9.  Create and interpret a single plot with year on the x-axis and median price for a 1 bedroom apartment on the y-axis, using a separate line for each city in Santa Clara county, for the years 2000 to 2018.
+
+```{r}
+z <- sc_onebed %>% 
+  group_by(year, city) %>% 
+  summarise(median_price = median(price))
+ggplot(data = z, 
+       aes(x = year, y = median_price)) +
+  geom_line()
+```
+
+## C. Open ended data visualization
+
+For this part, choose a dataset that interests you and identify a set of questions that you would like to explore via data visualizations. In particular, you should create three visualizations that satisfy the following requirements.
+
+### Instructions
+
+-   Identify three research questions of interest that you want to study using this dataset.
+-   For each of your three research questions, generate a data visualization using your dataset. Discuss and interpret your findings.
+-   Your project should include at least two different types of visualizations (e.g. scatterplots, box plots, bar plots, histograms, line plots, etc.).
+-   At least one of your plots should display variation over time or location (or both) in some way.
+-   Each visualization should include a caption that fully explains how to understand your visualization (i.e. explain all the components, legends, etc.). A good guideline is that someone who has not read your report should be able to look at just a visualization and its caption and fully understand what that visualization is showing.
+-   Each visualization must be accompanied by at least one paragraph of text. This text should include an interpretation of your visualization as well as what is interesting about your visualization. A strong visualization will be accompanied by text explaining what patterns or insights it helps us glean from the data.
+
+© Copyright 2024, Peter A. Gao

@@ -1,0 +1,5 @@
+"0","t <- flights %>% "
+"0","  group_by(origin) %>% "
+"0","  summarize(mean_arr_delay_origin = mean(arr_delay, na.rm = TRUE)) %>% "
+"0","  ungroup()"
+"0","t"

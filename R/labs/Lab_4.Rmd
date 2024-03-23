@@ -1,0 +1,294 @@
+---
+title: "Lab 4: Data Visualization"
+author: "Jack Rellamas"
+date: "02-29-2024"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+---
+
+Remember, **follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
+
+### Collaborators
+
+INSERT NAMES OF ANY COLLABORATORS
+
+```{r}
+# LOAD ANY RELEVANT PACKAGES HERE
+library(tidyverse)
+```
+
+## A. Basic visualizations
+
+For this portion, we'll be using the `palmerpenguins` data. Use the following code to load the data.
+
+```{r}
+library(palmerpenguins)
+data(penguins)
+```
+
+1.  Create and interpret a histogram of `bill_length_mm` using base R code. Be sure to use meaningful axis labels and titles.
+
+```{r}
+hist(x = penguins$bill_length_mm, 
+     breaks = 20,
+     main = "Distribution of Penguin Bill Length", 
+     xlab = "Bill Length (mm)")
+```
+
+![](images/000010.png?resize=13.jpg)
+
+2.  Create and interpret a histogram of `bill_length_mm` using ggplot2. Be sure to use meaningful axis labels and titles.
+
+```{r}
+ggplot(data = penguins, 
+       aes(x = bill_length_mm)) + 
+  geom_histogram() +
+  xlab("Bill Length (mm)") +
+  ggtitle("Distribution of Penguin Bill Length")
+  
+```
+
+![](images/000012.png?resize=14.jpg)
+
+3.  Create and interpret a scatterplot of `bill_length_mm` versus `bill_depth_mm` using base R code. Be sure to use meaningful axis labels and titles.
+
+```{r}
+# filter for completed cases of bill_length vs bill_depth
+clean_penguins <- penguins %>% 
+  filter(!is.na(bill_depth_mm) & !is.na(bill_length_mm))
+
+plot(x = penguins$bill_depth_mm, y = penguins$bill_length_mm,
+     main = "Penguin Bill Length vs. Bill Depth",
+     xlab = "Bill Depth (mm)",
+     ylab = "Bill Length (mm)",
+     col = "red3",
+     type = "p")
+```
+
+![](images/000010.png?resize=15.jpg)
+
+4.  Create and interpret a scatterplot of `bill_length_mm` versus `bill_depth_mm` using ggplot2. Be sure to use meaningful axis labels and titles.
+
+```{r}
+ggplot(data = clean_penguins, 
+       aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point(alpha = 0.5, color = "cyan4") +
+  xlab("Bill Depth (mm)") +
+  ylab("Bill Length (mm)") +
+  ggtitle("Penguin Bill Length vs. Bill Depth")
+```
+
+![](images/000010.png?resize=16.jpg)
+
+5.  Update your `ggplot2` scatterplot of `bill_length_mm` versus `bill_depth_mm` using ggplot2 so that the color of a point represents the corresponding penguin's species. What do you notice?
+
+```{r}
+ggplot(data = clean_penguins, 
+       aes(x = bill_depth_mm, y = bill_length_mm, color = clean_penguins$species)) + 
+  geom_point(alpha = 0.5) +
+  xlab("Bill Depth (mm)") +
+  ylab("Bill Length (mm)") +
+  ggtitle("Penguin Bill Length vs. Bill Depth")
+```
+
+![](images/000010.png?resize=17.jpg)
+
+## B. Analyzing trends in San Jose rental prices
+
+For this component, you will be exploring and visualizing data on Craigslist apartment rental postings in the Bay Area. The data are available [here](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-05/rent.csv) from Tidy Tuesday, as prepared by [Dr. Kate Pennington](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-07-05/readme.md). Note that you can use links within `read_csv()` to read online .csv files. I recommend saving a version of the unprocessed .csv on your machine in a `data` subfolder within your project folder so you will be able to work offline.
+
+```{r, include=FALSE}
+rent <- read.csv("/Users/rellamas/where is math stuff/R/data/rent.csv")
+```
+
+6.  How many 1 bedroom listings from Santa Clara county are in this dataset?
+
+```{r}
+sc_onebed <- filter(rent, beds == 1 & county == "santa clara")
+table(sc_onebed$beds)
+```
+
+There are 12455 1 bedroom listings from Santa Clara county in this dataset.
+
+6.  What is the median price for a 1 bedroom listing in Santa Clara county in 2018?
+
+```{r}
+sc_onebed_2018 <- filter(sc_onebed, year == 2018)
+summary(sc_onebed_2018)
+```
+
+The median price for a 1 bedroom listing in Santa Clara in 2018 is \$2095.
+
+6.  Which county has the highest median price for a 1 bedroom listing in 2018?
+
+```{r}
+onebed_2018 <- rent %>% filter(beds == 1 & year == 2018)
+onebed_2018 <- mutate(onebed_2018, county = factor(county))
+summary_by_county <- aggregate(price~county, data=onebed_2018, summary) #  #https://www.tutorialspoint.com/how-to-find-the-median-for-factor-levels-in-r
+```
+
+San Francisco is the county with the highest median price of rent at \$3000.
+
+7.  Create two histograms for the prices of 1 bedroom listings in Santa Clara county in 2005 and 2018. Compare and discuss.
+
+```{r}
+sc_1b_2005 <- rent %>% filter(beds == 1 & year == 2005 & county == "santa clara")
+ggplot(data = sc_1b_2005,
+       aes(x=price)) +
+  geom_histogram()
+```
+
+![](images/000010.png?resize=18.jpg)
+
+```{r}
+sc_1b_2018 <- rent %>% filter(beds == 1 & year == 2018 & county == "santa clara")
+ggplot(data = sc_1b_2018,
+       aes(x=price)) +
+  geom_histogram()
+```
+
+![](images/000010.png?resize=19.jpg)
+
+The most common price for rent in 2005 was around \$800. In 2018, the most common pricing for a one bedroom apartment in Santa Clara county had jumped to around \$2000. \The price distribution in 2005 is more right skewed meaning there were more apartment available on the affordable side of the market. The price distribution in 2018 is more normally distributed.
+
+8.  Create and interpret a line plot with year on the x-axis and median price for a 1 bedroom apartment for Santa Clara county on the y-axis from 2000 to 2018.
+
+```{r}
+sc_median_price_change <- sc_onebed %>% 
+  group_by(year) %>% 
+  summarise(median_price = median(price))
+ggplot(data = sc_median_price_change, 
+       aes(x = year, y = median_price)) +
+  geom_line()
+```
+
+![](images/000010.png?resize=20.jpg)
+
+The median price of a one bedroom apartment in Santa Clara county has been rapidly and steadily been increasing since the beginning of the 2000's.
+
+9.  Create and interpret a single plot with year on the x-axis and median price for a 1 bedroom apartment on the y-axis, using a separate line for each city in Santa Clara county, for the years 2000 to 2018.
+
+```{r}
+sc_1b_by_city <- sc_onebed %>% 
+  group_by(year, city) %>% 
+  summarise(median_price = median(price))
+ggplot(data = sc_1b_by_city, aes(x = year, y = median_price, color = city)) +
+  geom_line() +
+  labs(x = "Year", y = "Median Price", 
+       title = "Median Price of 1 Bedroom Santa Clara Apartment by City")
+```
+
+![](images/000014.png?resize=12.jpg)
+
+## C. Open ended data visualization
+
+For this part, choose a dataset that interests you and identify a set of questions that you would like to explore via data visualizations. In particular, you should create three visualizations that satisfy the following requirements.
+
+### Instructions
+
+-   Identify three research questions of interest that you want to study using this dataset.
+-   For each of your three research questions, generate a data visualization using your dataset. Discuss and interpret your findings.
+-   Your project should include at least two different types of visualizations (e.g. scatterplots, box plots, bar plots, histograms, line plots, etc.).
+-   At least one of your plots should display variation over time or location (or both) in some way.
+-   Each visualization should include a caption that fully explains how to understand your visualization (i.e. explain all the components, legends, etc.). A good guideline is that someone who has not read your report should be able to look at just a visualization and its caption and fully understand what that visualization is showing.
+-   Each visualization must be accompanied by at least one paragraph of text. This text should include an interpretation of your visualization as well as what is interesting about your visualization. A strong visualization will be accompanied by text explaining what patterns or insights it helps us glean from the data.
+
+## Using U.S. Monthly Count of Deaths 2014-2019 Dataset
+
+```{r}
+# load dataset
+# https://catalog.data.gov/dataset/monthly-counts-of-deaths-by-select-causes-2014-2019-da9df
+# monthly_death_count (mdc)
+mdc <- read_csv("/Users/rellamas/where is math stuff/R/data/Monthly_Counts_of_Deaths_by_Select_Causes__2014-2019.csv")
+```
+
+### Question 1: Which are the deadliest months of the year? Which are the least deadly?
+
+```{r}
+# turn Year and Month cols to factor types
+mdc <- mdc %>% 
+  mutate(Year = factor(Year), Month = factor(Month))
+
+# link all cause of deaths to months
+all_vs_month <- aggregate(`All Cause`~Month, data = mdc, mean)
+
+all_cause_sum <- sum(all_vs_month$`All Cause`)
+
+# make bar plot
+ggplot(data = all_vs_month, 
+       aes(x = Month, y = `All Cause` / all_cause_sum)) +
+  geom_bar(stat = "identity", fill="dodgerblue4") +
+  ylab("Avg. % Share of Death") +
+  labs(title = "Average Death Count Share per Month in U.S. (2014-2019)",
+          caption = "Noticable increase in deaths in winter months and a decrease in summer months.") +
+  geom_text(aes(label = round(`All Cause`/all_cause_sum, digits = 3)), position=position_dodge(width=0.9), vjust=-0.25) + # put value over bar
+  # https://intellipaat.com/community/16343/how-to-put-labels-over-geombar-for-each-bar-in-r-with-ggplot2
+  theme(plot.caption = element_text(hjust = 0.5))
+```
+
+From this graphic we can see that the top 3 deadliest months are January, March, and December. There is a stretch in the year where people die less, which goes from April to September. Then, there is an uptick starting in October and the increased levels of all causes of death continues through March. It makes intuitive sense that the late autumn and winter months, where people are most prone to sickness, have a higher share of deaths during the year.
+
+### Question 2: Are there any causes of death that have decreased during the 2014-2019 period? Are there any that increased?
+
+```{r}
+# make new df where all numeric columns (causes of death) are summed by Year
+ydc <- mdc %>% 
+  group_by(Year) %>% 
+  summarise(across(where(is.numeric), sum))
+# turn all other cols, except Year, are put into single factor col, and their numeric values are in own col
+ydc_reshape <- pivot_longer(ydc,
+                        cols = -Year,     # all cols except "Year"
+                        names_to = "cause_of_death",
+                        values_to = "num_deaths")
+# convert "cause_of_death" col to factor
+ydc_reshape <- ydc_reshape %>% 
+  mutate(cause_of_death = factor(cause_of_death))
+
+ggplot(data = ydc_reshape, aes(x = Year, y = num_deaths, group = 1)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Change in Deaths per Year for Different Causes",
+       caption = "Most causes in death saw a relatively steady increase throughout the 5 year observation period.") +
+  theme(plot.caption = element_text(hjust = 0.5)) +
+  facet_wrap(~ cause_of_death, scales = "free")
+```
+
+Most of the causes of death had a relatively steady uptrend during the 5 year period of this dataset. The only exceptions being septicemia, abnormal clinical and laboratory findings, and influenza and pneumonia. It would be more interesting if the numbers were adjusted by the share of the population, which, I presume, is also steadily growing in the U.S.
+
+### Question 3: How much does seasonal depression affect self harm, drug overdose, and homicides?
+
+```{r}
+selfharm_month <- aggregate(`Intentional Self-Harm (Suicide)`~Month, data = mdc, mean)
+homicide_month <- aggregate(`Assault (Homicide)`~Month, data = mdc, mean)
+od_month <- aggregate(`Drug Overdose`~Month, data = mdc, mean)
+
+ggplot(data = selfharm_month, 
+       aes(x = Month, y = `Intentional Self-Harm (Suicide)`)) +
+  geom_bar(stat = "identity", fill="darkblue") +
+  labs(title = "Average Suicides by Month (2014-2019)",
+       caption = "There are more suicides in the spring and summer seasons.") +
+  theme(plot.caption = element_text(hjust = 0.5))
+
+ggplot(data = homicide_month, 
+       aes(x = Month, y = `Assault (Homicide)`)) +
+  geom_bar(stat = "identity", fill="maroon") +
+  labs(title = "Average Homicides by Month (2014-2019)",
+       caption = "There is a steady increase in the number of homicides starting in February and capping out in July.") +
+  theme(plot.caption = element_text(hjust = 0.5))
+
+ggplot(data = od_month, 
+       aes(x = Month, y = `Drug Overdose`)) +
+  geom_bar(stat = "identity", fill="seagreen4") +
+  labs(title = "Average Drug Overdoses by Month (2014-2019)",
+       caption = "Average number of drug overdoses is steady throughout the year.") +
+  theme(plot.caption = element_text(hjust = 0.5))
+```
+
+These 3 causes did not follow my assumption that there would be an increase in self-harming and violent behavior in the winter. I assumed that seasonal depression would drive more people to destructive behavior.
+A possible explanation for the increase in homicides in the summer is that there are more people going out than in the colder months, so there are more opportunities for violence between people.
+There is also always a dip in February for every cause of death. I assume this is because February only has 28 days per month where the other months have 30 or 31 days.
+
+© Copyright 2024, Peter A. Gao

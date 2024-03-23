@@ -1,0 +1,19 @@
+
+these tables come from the {tidyr} package
+
+# trying to make table2 look like table1
+```{r}
+table1
+```
+```{r}
+table2
+```
+
+Example of How to use pivot_longer() / pivot_wider()
+```{r}
+View(relig_income)
+```
+```{r}
+
+```
+

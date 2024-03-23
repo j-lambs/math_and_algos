@@ -1,0 +1,6 @@
+"0","# make df filtering for USMCA countries"
+"0","cpi_usmca <- filter(cpi, Country == ""United States"" |"
+"0","                      Country == ""Mexico"" |"
+"0","                      Country == ""Canada"")"
+"0",""
+"0",""

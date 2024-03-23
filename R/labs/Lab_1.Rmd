@@ -1,0 +1,48 @@
+---
+title: "Lab 1"
+author: "Jack Rellamas"
+date: "2024-02-16"
+output: pdf_document
+---
+
+### Question 1:
+
+8.988466e+307\
+I do trust this result
+
+### Question 2:
+
+Inf\
+I do not trust this result
+
+### Question 3:
+
+10
+
+### Question 4:
+
+20
+
+### Question 5:
+
+121
+
+### Question 6:
+
+My result was "H". This code block makes a vector, "sides", of heads or tails, then randomly chooses 1 of the elements of the vector and saves that random choice into "flip1".
+
+### Question 7:
+
+My result for the 10 coin flips with replacement was "H" "T" "T" "H" "T" "H" "T" "H" "H" "T".
+
+### Question 8:
+
+I see the name and value of the variable "x". It holds a value of 10.
+
+### Question 9:
+
+Files shows your computer's directory.
+
+### Question 10:
+
+I see a scatter plot of different types of cars' highway gas mileage vs the engine displacement. The plot seems to have an exponential distribution.

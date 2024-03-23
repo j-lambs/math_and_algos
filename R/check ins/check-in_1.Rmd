@@ -1,0 +1,21 @@
+---
+title: "check-in_1"
+author: "jrellamas"
+date: "2024-02-19"
+output: html_document
+---
+
+```{r}
+data(mtcars)
+plot(mtcars$hp, mtcars$mpg)
+```
+
+## Relationship Between MPG and HP
+The relationship between MPG and HP can be described as having an exponential 
+distribution.
+
+## Own Code
+```{r}
+print("Hello MATH167R!")
+```
+

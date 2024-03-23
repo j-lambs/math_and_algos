@@ -1,0 +1,4 @@
+"0","library(openxlsx)"
+"0","cpi <- read.xlsx(""https://thedocs.worldbank.org/en/doc/1ad246272dbbc437c74323719506aa0c-0350012021/original/Inflation-data.xlsx"","
+"0","                 sheet = 5)"
+"0","cpi <- cpi[1:203,]"

@@ -1,0 +1,10 @@
+"0","flights <- flights(flights, month = factor(month))"
+"2","Error in flights(flights, month = factor(month)) : 
+  could not find function ""flights""
+"
+"2","In addition: "
+"2","Warning message:
+"
+"2","In formals(fun) :"
+"2"," argument is not a function
+"

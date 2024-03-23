@@ -1,0 +1,6 @@
+"0","sc_median_price_change <- sc_onebed %>% "
+"0","  group_by(year) %>% "
+"0","  summarise(median_price = median(price))"
+"0","ggplot(data = sc_median_price_change, "
+"0","       aes(x = year, y = median_price)) +"
+"0","  geom_line()"

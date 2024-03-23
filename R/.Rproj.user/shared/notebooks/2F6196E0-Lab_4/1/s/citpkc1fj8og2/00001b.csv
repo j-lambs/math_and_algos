@@ -1,0 +1,6 @@
+"0","ggplot(data = clean_penguins, "
+"0","       aes(x = bill_depth_mm, y = bill_length_mm)) + "
+"0","  geom_point(alpha = 0.5, color = ""cyan4"") +"
+"0","  xlab(""Bill Depth (mm)"") +"
+"0","  ylab(""Bill Length (mm)"") +"
+"0","  ggtitle(""Penguin Bill Length vs. Bill Depth"")"

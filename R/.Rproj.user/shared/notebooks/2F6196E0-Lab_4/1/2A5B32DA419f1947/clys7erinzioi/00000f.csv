@@ -1,0 +1,5 @@
+"0","ggplot(data = penguins, "
+"0","       aes(x = bill_length_mm)) + "
+"0","  geom_histogram() +"
+"0","  xlab(""Bill Length (mm)"") +"
+"0","  ggtitle(""Distribution of Penguin Bill Length"")"

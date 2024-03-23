@@ -1,0 +1,80 @@
+---
+title: "Lab_2_Markdown"
+author: "jrellamas"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Part A
+
+## Question 1:
+
+```{r}
+getwd()
+```
+
+Path comes out to be\
+[1] "/Users/rellamas/where is math stuff/R/labs"
+
+## Question 2:
+
+Path comes out to be\
+[1] "/Users/rellamas/where is math stuff/R".\
+These paths for the console and the markdown are different. The console starts out in the "home" directory by default, whereas my markdown file is in my "labs" directory, so the working directory will be there. The working directory is where in the computer your code is being ran.
+
+## Question 3:
+
+```{r}
+x <- exp(1)
+print(x)
+```
+
+## Questions 4 & 5:
+
+```{r}
+library(readr)
+cars <- read_csv("/Users/rellamas/where is math stuff/R/data/cars.csv")
+head(cars)
+```
+
+# Part B
+
+## Question 6:
+
+```{r}
+1:100
+```
+
+## Question 7:
+
+```{r}
+matrix(data = 1:9, nrow = 3, ncol = 3)
+```
+
+# Part C
+```{r}
+# load palmer penguins package
+library(palmerpenguins)
+
+# open penguins data as a data frame
+data(penguins)
+penguins <- as.data.frame(penguins)
+```
+
+
+## Question 8:
+```{r}
+mean(penguins[["body_mass_g"]], na.rm = TRUE)
+```
+
+## Question 9:
+```{r}
+max(penguins[["flipper_length_mm"]], na.rm = TRUE)
+```
+
+## Question 10:
+```{r}
+penguins$bill_len_to_depth_col <- penguins$bill_length_mm / penguins$bill_depth_mm
+hist(penguins$bill_len_to_depth_col, main = "Histogram of Ratio between Bill Length and Bill Depth", xlab="Length/Depth Ratio", ylab="Bill Length")
+```
+There is a bimodal distribution.

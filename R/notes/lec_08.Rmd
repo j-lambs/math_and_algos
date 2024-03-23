@@ -1,0 +1,39 @@
+# GAPMINDER: life expectancy vs country gdp
+
+## how can we learn from this vizualization
+
+### install gapminder package
+
+```{r}
+install.packages('gapminder')
+```
+
+### import it
+```{r}
+library(gapminder)  # import
+data(gapminder)     # data() just loads a dataset
+head(gapminder)
+```
+
+```{r}
+summary(gapminder)
+```
+
+'lets work with gapminder data'
+```{r}
+gapminder_2007 <- gapminder |> 
+  filter(year == 2007)
+```
+
+
+try to recreate image (gapminder jpg in notes)
+```{r}
+ggplot(data = gapminder_2007,
+       aes(x = gdpPercap, 
+           y = lifeExp,
+           color = continent,
+          size = pop  )) +
+         geom_point()
+```
+
+

@@ -1,0 +1,4 @@
+"0","hist(x = penguins$bill_length_mm, "
+"0","     breaks = 20,"
+"0","     main = ""Distribution of Penguin Bill Length"", "
+"0","     xlab = ""Bill Length (mm)"")"

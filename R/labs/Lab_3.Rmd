@@ -1,0 +1,181 @@
+---
+title: "Lab 3: Descriptive Statistics"
+author: "Jack Rellamas"
+date: 2024-02-22
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+---
+
+**Follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
+
+Your final submission should clearly include all code needed to generate your answers and should be formatted according to the guidelines outlined in class. In particular, make sure:
+
+1.  Code and output are clearly organized by question.
+2.  Unnecessary messages, warning, and output are removed.
+
+You may collaborate with your classmates and consult external resources, but you should write and submit your own answer. **Any classmates with whom you collaborate should be credited at the top of your submission. Similarly, if you consult any external references, you should cite them clearly and explicitly.**
+
+## A. Weather Forecast Data
+
+1.  For this lab, we'll be using data on weather forecasts gathered by student at Saint Louis University. You can read about the dataset [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-12-20). Download the weather forecasts data using the following code:
+
+```{r, message = F}
+library(dplyr)
+weather_forecasts <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-12-20/weather_forecasts.csv')
+```
+
+2.  How many rows are in this dataset? How many columns?
+
+```{r}
+num_rows <- nrow(weather_forecasts)
+num_cols <- ncol(weather_forecasts)
+print(num_rows)
+print(num_cols)
+```
+
+\[1\] 651968 rows.
+
+\[1\] 10 columns.
+
+3.  How many cities are represented in this dataset?
+
+```{r}
+unique(weather_forecasts$city) %>% 
+  length()
+```
+
+\[1\] 160 unique cities
+
+4.  Create a new data frame containing only the forecasts for San Jose. You may have to explore the values for the `city` variable.
+
+```{r}
+san_jose <- filter(weather_forecasts, city == "SAN_JOSE")
+head(san_jose)
+```
+
+5.  Compute the mean absolute error between `observed_temp` and `forecast_temp` for San Jose.
+
+```{r}
+sj_temps <- san_jose[6:7]
+sj_temps <- sj_temps[complete.cases(sj_temps), ]
+temps_error <- sj_temps$observed_temp - sj_temps$forecast_temp
+temps_error %>% 
+  abs() %>% 
+  mean()
+```
+
+\[1\] 2.169762 degrees
+
+6.  Compute the mean absolute error between `observed_temp` and `forecast_temp` for San Jose using only forecasts made 48 hours in advance.
+
+```{r}
+sj_temps_48h <- filter(san_jose, forecast_hours_before == 48)
+sj_temps_48h_observed <- sj_temps_48h["observed_temp"]
+sj_temps_48h_forecast <- sj_temps_48h["forecast_temp"]
+sj_temps_48h <- cbind(sj_temps_48h_observed, sj_temps_48h_forecast)
+sj_temps_48h <- sj_temps_48h[complete.cases(sj_temps_48h), ]
+temps_error_48h <- sj_temps_48h$observed_temp - sj_temps_48h$forecast_temp
+temps_error_48h %>% 
+  abs() %>% 
+  mean()
+```
+
+\[1\] 2.262544 degrees
+
+7.  Compute the mean absolute error between `observed_temp` and `forecast_temp` for San Jose using only forecasts made 12 hours in advance.
+
+```{r}
+sj_temps_12h <- filter(san_jose, forecast_hours_before == 12)
+sj_temps_12h_observed <- sj_temps_12h["observed_temp"]
+sj_temps_12h_forecast <- sj_temps_12h["forecast_temp"]
+sj_temps_12h <- cbind(sj_temps_12h_observed, sj_temps_12h_forecast)
+sj_temps_12h <- sj_temps_12h[complete.cases(sj_temps_12h), ]
+temps_error_12h <- sj_temps_12h$observed_temp - sj_temps_12h$forecast_temp
+temps_error_12h %>% 
+  abs() %>% 
+  mean()
+```
+
+\[1\] 2.0553 degrees.
+
+8.  Compare your answers to 6 and 7. What do you notice? How does this compare to your expectation?
+
+The absolute mean error for the difference between the observed temperatures and forecast temperatures was small when the forecast was 12 hours ahead compared to the 48 hour forecasts. This makes sense since we would expect the forecast to be more accurate when it is closer to the time of observation.
+
+9.  Pick two cities in this dataset. Investigate whether the forecast accuracy is better for one city than for the other, using an appropriate statistic. Discuss your findings.
+
+```{r}
+# BOSTON absolute mean error <= 48 hour forecasts
+bos_temps <- filter(weather_forecasts, city == "BOSTON", forecast_hours_before <= 24)
+bos_observed <- bos_temps["observed_temp"]
+bos_forecast <- bos_temps["forecast_temp"]
+bos_temps <- cbind(bos_observed, bos_forecast)
+bos_temps <- bos_temps[complete.cases(bos_temps), ]
+bos_temps_error <- bos_temps$observed_temp - bos_temps$forecast_temp
+print("ABS MEAN ERROR BOSTON:")
+bos_temps_error %>% 
+  abs() %>% 
+  mean() %>% 
+  print()
+
+# MIAMI mean absolute error <= 48 hour forecasts
+miami_temps <- filter(weather_forecasts, city == "MIAMI_BEACH", forecast_hours_before <= 24)
+miami_observed <- miami_temps["observed_temp"]
+miami_forecast <- miami_temps["forecast_temp"]
+miami_temps <- cbind(miami_observed, miami_forecast)
+miami_temps <- miami_temps[complete.cases(miami_temps), ]
+miami_temps_error <- miami_temps$observed_temp - miami_temps$forecast_temp
+print("ABS MEAN ERROR MIAMI:")
+miami_temps_error %>% 
+  abs() %>% 
+  mean() %>% 
+  print()
+
+```
+
+\[1\] "ABS MEAN ERROR BOSTON:" \[1\] 2.436693 \[1\] "ABS MEAN ERROR MIAMI:" \[1\] 1.689895 I found the absolute mean error for forecasts less than or equal to 24 hours before the observed temperature. The forecast temperature for this timeframe is more accurate for Miami Beach than it is for Boston. Maybe the meteorologist for Miami is better than the one in Boston. Or, Miami has a more stable and predictable weather pattern than Boston.
+
+## B. Find your own data
+
+For this component, pick a [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2023) and complete the following activity.
+
+```{r}
+haunted_places <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-10-10/haunted_places.csv')
+```
+
+10. Provide a brief description of your dataset. Identify at least two questions you could try to answer using this dataset.
+
+11. What is the most haunted city in America (according to this dataset)?
+
+12. Is the east or west coast more haunted?
+
+13. Open your dataset in R and compute one or more descriptive statistics that shed light on your questions. Discuss your findings.
+
+```{r}
+# most haunted cities in US
+city_freq <- as.data.frame(table(haunted_places$city))
+# https://stackoverflow.com/questions/7531868/how-to-rename-a-single-column-in-a-data-frame
+names(city_freq)[names(city_freq) == "Var1"] <- "city"
+# chatgpt, order df by column in descending order
+city_freq <- city_freq[order(-city_freq$Freq), ]
+head(city_freq)
+```
+
+```{r}
+# which coast is more haunted
+west <- filter(haunted_places, longitude >= -125 & longitude <= -105)
+east <- filter(haunted_places, longitude >= -85 & longitude <= -65)
+print(paste("Number of Haunted Places West: ",  nrow(west)))
+print(paste("Number of Haunted Places East: ", nrow(east)))
+```
+
+I found that the city with the most haunted places in America is Los Angeles.\
+Additionally, I found that the east coast has more than double the number of haunted sites than the west coast. This is probably due to the fact that the east coast was settled first and has a high population.
+
+12. Are there any limitations of your analysis? Could additional data or more complicated methods improve your analysis? Discuss.
+
+If I had the population of each city, then I could know which city is most densely haunted.\
+It would be really interesting to be able to make a heat map of the haunted places to visualize where the haunted site "hotspots" are in the US.

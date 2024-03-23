@@ -1,0 +1,2 @@
+"0","san_jose <- filter(weather_forecasts, city == ""SAN_JOSE"")"
+"0","head(san_jose)"

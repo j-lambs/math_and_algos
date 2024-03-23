@@ -1,0 +1,35 @@
+---
+title: "Check-in 3"
+author: "Jack Rellamas"
+date: "03-06-24"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+---
+
+Remember, **follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
+
+Use the following code to download the annual consumer price index data from the World Bank:
+
+```{r}
+library(openxlsx)
+cpi <- read.xlsx("https://thedocs.worldbank.org/en/doc/1ad246272dbbc437c74323719506aa0c-0350012021/original/Inflation-data.xlsx",
+                 sheet = 5)
+cpi <- cpi[1:203,]
+```
+
+1.  Create a line plot with Year on the x-axis and CPI on the y-axis, with different color lines for the US, Canada, and Mexico.
+
+```{r}
+library(tidyverse)
+# make df filtering for USMCA countries
+cpi_usmca <- filter(cpi, Country == "United States" |
+                      Country == "Mexico" |
+                      Country == "Canada")
+ggplot(data = cpi_usmca,
+       aes(x = "1970")) +
+  geom_line()
+
+```

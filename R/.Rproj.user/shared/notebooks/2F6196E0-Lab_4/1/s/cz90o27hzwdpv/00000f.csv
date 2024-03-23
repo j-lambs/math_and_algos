@@ -1,0 +1,4 @@
+"0","onebed_2018 <- rent %>% filter(beds == 1 & year == 2018)"
+"0","onebed_2018 <- mutate(onebed_2018, county = factor(county))"
+"0","t <- aggregate(price~county, data=onebed_2018, summary) #  #https://www.tutorialspoint.com/how-to-find-the-median-for-factor-levels-in-r"
+"0","View(t)"

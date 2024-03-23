@@ -1,0 +1,7 @@
+"0","z <- sc_onebed %>% "
+"0","  group_by(year, city) %>% "
+"0","  summarise(median_price = median(price))"
+"2","`summarise()` has grouped output by 'year'. You can override using the `.groups` argument."
+"0","ggplot(data = z, "
+"0","       aes(x = year, y = median_price)) +"
+"0","  geom_line()"
