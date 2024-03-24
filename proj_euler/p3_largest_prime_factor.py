@@ -19,3 +19,5 @@ if __name__ == '__main__':
     prime_factors = prime_factorization(num)
     print(prime_factors)
     print(max(prime_factors))
+
+    
