@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="fin p3 find largest prime factor">
-      <change afterPath="$PROJECT_DIR$/p4_Largest_Palindrome_Product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,19 +31,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "Python.p1_multiples_3_and_5.executor": "Run",
-    "Python.p2_even_fibs.executor": "Run",
-    "Python.p3_largest_prime_factor.executor": "Run",
-    "Python.p4_Largest_Palindrome_Product.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/rellamas/math_and_algos/proj_euler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p1_multiples_3_and_5.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p2_even_fibs.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p3_largest_prime_factor.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p4_Largest_Palindrome_Product.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/rellamas/math_and_algos/proj_euler&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.p4_Largest_Palindrome_Product">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="proj_euler" />
