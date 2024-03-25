@@ -3,7 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.9 (math_and_algos)" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="20" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$" />
-  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="/opt/anaconda3" project-jdk-type="Python SDK" />
 </project>
