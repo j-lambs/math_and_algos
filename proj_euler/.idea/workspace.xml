@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="fin p7: simple get Nth prime number">
-      <change beforePath="$PROJECT_DIR$/p7_nth_prime.py" beforeDir="false" afterPath="$PROJECT_DIR$/p7_nth_prime.py" afterDir="false" />
-    </list>
+    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="wrote review plan of project euler probs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +20,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -227,7 +228,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711406562828</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="p7: duh primes are odd">
+      <option name="closed" value="true" />
+      <created>1711406918888</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711406918888</updated>
+    </task>
+    <task id="LOCAL-00006" summary="wrote review plan of project euler probs">
+      <option name="closed" value="true" />
+      <created>1711407112800</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711407112800</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -235,6 +252,8 @@
     <MESSAGE value="baby soln prob 2" />
     <MESSAGE value="fin p3 find largest prime factor" />
     <MESSAGE value="fin p7: simple get Nth prime number" />
-    <option name="LAST_COMMIT_MESSAGE" value="fin p7: simple get Nth prime number" />
+    <MESSAGE value="p7: duh primes are odd" />
+    <MESSAGE value="wrote review plan of project euler probs" />
+    <option name="LAST_COMMIT_MESSAGE" value="wrote review plan of project euler probs" />
   </component>
 </project>
