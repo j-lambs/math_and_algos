@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/p6_sum_square_difference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/proj_euler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proj_euler.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/p7_nth_prime.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/p81_shortest_path_sum/005.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/p81_shortest_path_sum/0081_matrix.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/p81_shortest_path_sum/p81_shortest_path_sum.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,26 +38,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.p5_smallest_multiple.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.p1_multiples_3_and_5.executor&quot;: &quot;Run&quot;,
-    &quot;Python.p2_even_fibs.executor&quot;: &quot;Run&quot;,
-    &quot;Python.p3_largest_prime_factor.executor&quot;: &quot;Run&quot;,
-    &quot;Python.p4_Largest_Palindrome_Product.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rellamas/math_and_algos/proj_euler&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.p5_smallest_multiple.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.p1_multiples_3_and_5.executor": "Run",
+    "Python.p2_even_fibs.executor": "Run",
+    "Python.p3_largest_prime_factor.executor": "Run",
+    "Python.p4_Largest_Palindrome_Product.executor": "Run",
+    "Python.p7_nth_prime.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/rellamas/math_and_algos/proj_euler",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
-  <component name="RunManager" selected="Python.p4_Largest_Palindrome_Product">
+}]]></component>
+  <component name="RunManager">
     <configuration name="p5_smallest_multiple" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="p5_smallest_multiple" />
       <module name="proj_euler" />
