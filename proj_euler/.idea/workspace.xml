@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/p7_nth_prime.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/p81_shortest_path_sum/005.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/p81_shortest_path_sum/0081_matrix.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/p81_shortest_path_sum/p81_shortest_path_sum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="fin p7: simple get Nth prime number">
+      <change beforePath="$PROJECT_DIR$/p7_nth_prime.py" beforeDir="false" afterPath="$PROJECT_DIR$/p7_nth_prime.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,13 +219,22 @@
       <option name="project" value="LOCAL" />
       <updated>1711317421169</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fin p7: simple get Nth prime number">
+      <option name="closed" value="true" />
+      <created>1711406562828</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711406562828</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="O(n) soln to prob prob 1" />
     <MESSAGE value="baby soln prob 2" />
     <MESSAGE value="fin p3 find largest prime factor" />
-    <option name="LAST_COMMIT_MESSAGE" value="fin p3 find largest prime factor" />
+    <MESSAGE value="fin p7: simple get Nth prime number" />
+    <option name="LAST_COMMIT_MESSAGE" value="fin p7: simple get Nth prime number" />
   </component>
 </project>

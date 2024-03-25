@@ -1,11 +1,15 @@
 
 def get_Nth_prime(n: int) -> int:
-	list_primes = [2]
+	list_primes = [2, 3]
 
-	next_prime = list_primes[len(list_primes) - 1]	# set next_prime to end of list_primes
+	# special case where user is asking for 1st or 2nd prime
+	if n == 1 or n == 2:
+		return list_primes[n]
+
+	next_prime = list_primes[len(list_primes) - 1]	# set next_prime to end of list_primes, which = 3
 	# loop while we havent added the next prime
 	while len(list_primes) != n:
-		next_prime += 1
+		next_prime += 2
 		if is_prime(next_prime, list_primes):
 			list_primes.append(next_prime)
 	print(list_primes)
