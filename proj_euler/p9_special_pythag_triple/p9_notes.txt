@@ -1,0 +1,10 @@
+1) Simon's Favorite Factoring Trick
+
+An equation in the form of 1xy + jx + ky = a , where j,k,a are int constants,
+==> (x + k)(y + j) - jk = a   ==> (x + k)(y + j) = a + jk
+
+2) Pythagorean Parameterization (Generating Pythag Triples)
+
+a = k (m^2 - n^2), b = k (2mn), c = m^2 + n^2, where m,n are ints, m > n > 0, and m and n are coprime and both not odd.
+
+* Coprime * - means only common factor between 2 ints is 1
