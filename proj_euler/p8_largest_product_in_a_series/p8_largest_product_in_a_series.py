@@ -6,6 +6,7 @@ def get_product_of_list(myList: list) -> int:
     return product
 
 # kinda slow, there must be a way to read and find max_product in same loop
+#TODO: Put products & sums of sliding window into CSV and see distributions
 if __name__ == '__main__':
     num_adjacent_digits = 13
 

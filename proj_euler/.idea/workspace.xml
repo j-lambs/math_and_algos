@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="wrote review plan of project euler probs">
-      <change afterPath="$PROJECT_DIR$/p8_largest_product_in_a_series/large_int.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/p8_largest_product_in_a_series/p8_largest_product_in_a_series.py" afterDir="false" />
+    <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="p8 - fin get largest adjacent product in series of nums">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p8_largest_product_in_a_series/p8_largest_product_in_a_series.py" beforeDir="false" afterPath="$PROJECT_DIR$/p8_largest_product_in_a_series/p8_largest_product_in_a_series.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711407112800</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="p8 - fin get largest adjacent product in series of nums">
+      <option name="closed" value="true" />
+      <created>1711491928179</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711491928179</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -265,6 +272,7 @@
     <MESSAGE value="fin p7: simple get Nth prime number" />
     <MESSAGE value="p7: duh primes are odd" />
     <MESSAGE value="wrote review plan of project euler probs" />
-    <option name="LAST_COMMIT_MESSAGE" value="wrote review plan of project euler probs" />
+    <MESSAGE value="p8 - fin get largest adjacent product in series of nums" />
+    <option name="LAST_COMMIT_MESSAGE" value="p8 - fin get largest adjacent product in series of nums" />
   </component>
 </project>
