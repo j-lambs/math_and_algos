@@ -3,6 +3,8 @@
 if __name__ == '__main__':
 	file = open("005.txt", "r")
 	for line in file:
+		line = line.rstrip("\n")
+
 		print(line)
 
 

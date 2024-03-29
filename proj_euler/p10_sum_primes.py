@@ -1,8 +1,9 @@
 import p7_nth_prime
 
-MAX = 2000000
+# MAX = 2000000
 # MAX = 8000
 # MAX = 10
+MAX = 100
 """
 # uses get_Nth_prime() function from Problem 7
 # but this is slow bc that function builds the primes everytime it is called

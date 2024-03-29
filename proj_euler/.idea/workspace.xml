@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="p9 - finito">
-      <change afterPath="$PROJECT_DIR$/p10_sum_primes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/p11_largest_product_in_grid/20x20_grid.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/p11_largest_product_in_grid/p11_largest_product_in_grid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/p7_nth_prime.py" beforeDir="false" afterPath="$PROJECT_DIR$/p7_nth_prime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p10_sum_primes.py" beforeDir="false" afterPath="$PROJECT_DIR$/p10_sum_primes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p81_shortest_path_sum/p81_shortest_path_sum.py" beforeDir="false" afterPath="$PROJECT_DIR$/p81_shortest_path_sum/p81_shortest_path_sum.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -44,6 +49,7 @@
     "Application.p5_smallest_multiple.executor": "Run",
     "Python.main.executor": "Run",
     "Python.p10_sum_primes.executor": "Run",
+    "Python.p11_largest_product_in_grid.executor": "Run",
     "Python.p1_multiples_3_and_5.executor": "Run",
     "Python.p2_even_fibs.executor": "Run",
     "Python.p3_largest_prime_factor.executor": "Run",
@@ -59,7 +65,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.toDoOptions"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -68,7 +74,7 @@
       <recent name="$PROJECT_DIR$/p8_largest_product_in_a_series" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.p10_sum_primes">
+  <component name="RunManager" selected="Python.p11_largest_product_in_grid">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="proj_euler" />
       <option name="ENV_FILES" value="" />
@@ -113,7 +119,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="p4_Largest_Palindrome_Product" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="p11_largest_product_in_grid" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="proj_euler" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,11 +128,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/p11_largest_product_in_grid" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p4_Largest_Palindrome_Product.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p11_largest_product_in_grid/p11_largest_product_in_grid.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -203,11 +209,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.p11_largest_product_in_grid" />
         <item itemvalue="Python.p10_sum_primes" />
         <item itemvalue="Python.p7_nth_prime" />
         <item itemvalue="Python.p9_pythag_triples" />
         <item itemvalue="Python.p8_largest_product_in_a_series" />
-        <item itemvalue="Python.p4_Largest_Palindrome_Product" />
       </list>
     </recent_temporary>
   </component>
@@ -311,12 +317,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/p10_sum_primes.py</url>
-          <line>16</line>
+          <line>17</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/p10_sum_primes.py</url>
-          <line>45</line>
+          <line>46</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
