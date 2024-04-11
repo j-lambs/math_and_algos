@@ -61,8 +61,13 @@ def max_prods_horizontal(N: int, matrix: [[]]) -> int:
 	print(f'Multipliers of Max Horizontal: {max_multipliers}')
 	return max_prod_horiz
 
+# Go down rows first
+# You need to check diag down AND diag up (and to the right)
 def max_prods_diagonal(N: int, matrix: [[]]) -> int:
 	max_prod_diag = 0
+
+	# i traverses rows
+	for i in range(len(matrix)):
 
 
 
