@@ -1,0 +1,234 @@
+---
+title: "Lab 8"
+author: "Jack Rellamas"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+output: pdf_document
+---
+
+Remember, **follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
+
+## A. Bootstrapping the sampling distribution of the median
+
+```{r}
+library(tidyverse)
+penguins <- palmerpenguins::penguins
+```
+
+1.  Using the `penguins` dataset in the `palmerpenguins` package, construct a confidence interval for the mean `body_mass_g` for female Adelie penguins based on using a normal distribution based on the central limit theorem. You should compute the confidence interval without using `confint()`.
+
+```{r}
+f_adelie <- filter(penguins, species == "Adelie", sex == "female")
+mean_body_mass <- mean(f_adelie$body_mass_g)
+z <- 1.96
+
+# get sample standard dev.
+sum <- 0
+for (i in f_adelie$body_mass_g) {
+  sum = sum + (i - mean_body_mass)**2
+}
+
+s <- (sum / (length(f_adelie$body_mass_g) - 1))**0.5
+r <- z * s / ((length(f_adelie$body_mass_g)))**0.5
+CI <- c(mean_body_mass - r, 
+        mean_body_mass + r)
+
+print(CI)
+
+```
+
+2.  Construct a bootstrap confidence interval for the mean `body_mass_g` for female Adelie penguins using 10000 resamples.
+
+```{r}
+set.seed(7)
+peng_resample <- replicate(10000, mean(sample(f_adelie$body_mass_g, 73, replace = T)))
+t.test(peng_resample)$conf.int
+```
+
+3.  Construct a bootstrap confidence interval for the median `body_mass_g` for female Adelie penguins using 10000 resamples.
+
+```{r}
+set.seed(7)
+peng_resample <- replicate(10000, median(sample(f_adelie$body_mass_g, 73, replace = T)))
+t.test(peng_resample)$conf.int
+```
+
+## B. Simulations
+
+4.  Suppose that $Y\sim \mathrm{Poisson}(X)$ where $X\sim \mathrm{Exponential}(1)$. Use simulation to estimate $E(Y)$ and $\mathrm{Var}(Y)$.
+
+```{r}
+set.seed(20)
+y <- replicate(10000, rpois(n = 1, lambda = rexp(1,1)))
+e_y <- mean(y)
+
+mystr <- paste("E(X):", e_y)
+print(mystr)
+
+e2 <- mean(y**2)
+var_y <- e2 - e_y
+mystr <- paste("Var(Y):", var_y)
+print(mystr)
+```
+
+5.  For this question, you will write a simulation to test the frequentist coverage of a 95% confidence interval for a proportion based on the normal approximation.
+
+    a.  First, write a function that takes two inputs: `n` and `p`. Your function should randomly generate some $X\sim \mathrm{Binomial}(n, p)$, compute $\widehat{p}= X/n$, and then compute the corresponding normal distribution-based confidence interval for $p$ **based on your sample** $\widehat{p}$. Your function should return `TRUE` if $p$ is in the confidence interval. You may use the following formula for the confidence interval:
+
+    $$\widehat{p}\pm z_{.975}\sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}$$
+
+```{r}
+in_CI <- function(n, p) {
+  X <- rbinom(n = n, size = 1, p = p)
+  S <- sum(X)
+  phat <- S / n
+  
+  CI <- c(phat - qnorm(0.975) * ((phat * (1 - phat)) / n)**0.5, 
+          phat + qnorm(0.975) * ((phat * (1 - phat)) / n)**0.5)
+  
+  if (p >= CI[1] & p <= CI[2]) {
+    return(T)
+  } 
+  return(F)
+}
+```
+
+```         
+b.  Next, write a second function that takes three inputs: `n`, `p`, and `n_runs`, representing the number of times to run your simulation. This function should use your function from (a) to simulate `n_runs` binomial random variables and return the proportion of the `n_runs` for which $p$ is contained in the confidence interval.
+```
+
+```{r}
+proportion_in_CI <- function(n, p, n_runs) {
+  runs <- replicate(n_runs, in_CI(n, p))
+  return(sum(runs) / n_runs)
+}
+```
+
+```         
+c.  Test your function from (b) with `n = 20`, `p = .5`, and `n_runs = 1000`.
+```
+
+```{r}
+set.seed(2017)
+proportion_in_CI(n = 20, p = .5, n_runs = 1000)
+```
+
+```         
+d.  Use your simulation code to investigate the following questions: For what values of `n` and `p` is the frequentist coverage close to the expected 95% value? For what values of `n` and `p` is the frequentist coverage very different to the expected 95% value?
+```
+
+For what values of `n` and `p` is the frequentist coverage close to the expected 95% value?}
+
+The frequentist coverage is close the the expected 0.95 value when n \>= 5 and when p = 0.3, 0.5, 0.7.
+
+For what values of `n` and `p` is the frequentist coverage very different to the expected 95% value?
+
+It is very different when n \< 5 and when p \< 0.1 or p \> 0.9.
+
+## C. Hypothesis Testing
+
+Use the following code to obtain the Hawaiian Airlines and Alaska Airlines flights from the `nycflights13` package.
+
+```{r, warning = F, message = F}
+library(tidyverse)
+library(nycflights13)
+data("flights")
+flights_sample <- flights |> 
+  filter(carrier %in% c("HA", "AS"))
+```
+
+6.  Compute a 95% confidence interval for the mean `arr_delay` for Alaska Airlines flights. Interpret your results.
+
+```{r}
+compute_CI <- function(vect) {
+  xbar <- mean(vect)
+  z <- 1.96
+  
+  # get sample standard dev.
+  sum <- 0
+  for (i in vect) {
+    sum = sum + (i - xbar)**2
+  }
+  
+  s <- (sum / (length(vect) - 1))**0.5
+  r <- z * s / ((length(vect)))**0.5
+  CI <- c(xbar - r, 
+          xbar + r)
+  return(CI)
+}
+```
+
+```{r}
+alaska <- flights_sample %>% 
+  filter(carrier == "AS") %>% 
+  drop_na(arr_delay)
+alaska_CI <- compute_CI(alaska$arr_delay)
+alaska_CI
+# t.test(alaska$arr_delay)$conf.int
+```
+
+We can be 95% certain that the true mean delay of Alaska Airlines flights lies between -12.616351 and -7.245426.
+
+7.  Compute a 95% confidence interval for the mean `arr_delay` for Hawaiian Airlines flights. Interpret your results.
+
+```{r}
+hawaiian <- flights_sample %>% 
+  filter(carrier == "HA") %>% 
+  drop_na(arr_delay)
+hawaii_CI <- compute_CI(hawaiian$arr_delay)
+hawaii_CI
+```
+
+We can be 95% certain that the true mean delay of Hawaiian Airlines flights lies between -14.877771 and 1.047361.
+
+8.  Compute a 95% confidence interval for the proportion of flights for which `arr_delay > 0` for Hawaiian Airlines flights. Interpret your results.
+
+```{r}
+h_flights <- as.numeric(hawaiian$arr_delay > 0)
+compute_CI(h_flights)
+```
+
+We can be 95% certain that the true proportion of Hawaiian Airline flights with a delay lies between 0.2357824 and 0.3314691.
+
+9.  Consider the null hypothesis that the mean `arr_delay` for Alaska is equal to the mean `arr_delay` for Hawaiian and the alternative hypothesis that the mean `arr_delay` values are different for the two airlines. Perform an appropriate hypothesis test and interpret your results.
+
+    ```{r}
+    t.test(x = alaska$arr_delay, y = hawaiian$arr_delay)
+    ```
+
+    We do not have enough evidence to dismiss the null hypothesis that the mean arrival delay of Alaska Airlines is equal to the mean arrival delay of Hawaiian Airlines.
+
+## D. Linear Regression
+
+Researchers at the University of Texas in Austin, Texas tried to figure out what causes differences in instructor teaching evaluation scores. Use the following code to load data on 463 courses. A full description of the data can be found [here](https://www.openintro.org/book/statdata/?data=evals).
+
+```{r, warning = F, message = F}
+evals <- readr::read_csv("https://www.openintro.org/book/statdata/evals.csv")
+```
+
+10. Carry out a linear regression with `score` as the response variable and `age` as the single explanatory variable. Interpret your results.
+
+```{r}
+plot(score ~ age, data = evals,
+     pch  = 16, col = "blue") +
+  abline(lm(evals$score ~ evals$age))
+summary(lm(score ~ age, data = evals))
+```
+
+With a slope of -0.005938 and a significance level of 0.0213, there there does seem to be a slight decrease in a teacher's score as age increases.
+
+10. Extend your regression model by adding an additional explanatory variable. What happens to your results? Are the new $p$-values appropriate to use?
+
+```{r}
+lm_res <- lm(score ~ age + bty_avg, data = evals)
+summary(lm_res)
+```
+
+There is a strong positive correlation between the teacher's beauty score and their evaluation score. Beauty is a stronger predictor of a score than age is.
+
+The p-value in this multiple linear regression analysis for age is much greater than it was when it was the only independent factor we were looking at.
+
+The new p-values are appropriate to use since. We can reject the null hypothesis for beauty, that beauty does not affect evaluation score, since the p-value is so low.
