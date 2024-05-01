@@ -1,0 +1,66 @@
+---
+title: "Check-in 8"
+author: "Jack Rellamas"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+output: pdf_document
+---
+
+Remember, **follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
+
+1.  Download and read the documentation for the [Childcare Costs data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-09/readme.md).
+
+```{r}
+childcare_costs <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/childcare_costs.csv')
+counties <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/counties.csv')
+```
+
+```{r}
+library(tidyverse)
+```
+
+2.  Use visualization and regression to explore the following question: Is there a relationship between a county's average childcare costs and its median household income? There will be more than one way to answer this question--the important thing is to **explain** the choices you make in your analysis.
+
+```{r}
+# mhi_2018 : Median household income expressed in 2018 dollars.
+# mcsa : Weekly, full-time median price charged for Center-Based Care for those who are school age 
+# mfccsa : Weekly, full-time median price charged for Family Childcare for those who are school age 
+
+childcare_costs <- childcare_costs %>% 
+  mutate(county_fips_code = factor(county_fips_code)) %>% 
+  filter_at(vars(mfccsa, mhi_2018), any_vars(complete.cases(.)))
+
+ggplot(data = childcare_costs,
+        aes(x = mhi_2018, 
+            y = mfccsa,
+            color = county_fips_code,
+            group = 1)) + #https://stackoverflow.com/questions/71761606/how-to-plot-a-single-regression-line-but-colour-points-by-a-different-factor-in
+  geom_point() + 
+  scale_x_log10() + 
+  theme(legend.position = "none") +
+  geom_smooth(method = 'lm') +
+  xlab("Median Household Income 2018") +
+  ylab("Weekly Median Family Childcare") +
+  ggtitle("Childcare Cost vs. Household Income")
+
+ggplot(data = childcare_costs,
+        aes(x = mhi_2018, 
+            y = mcsa,
+            color = county_fips_code,
+            group = 1)) + #https://stackoverflow.com/questions/71761606/how-to-plot-a-single-regression-line-but-colour-points-by-a-different-factor-in
+  geom_point() + 
+  scale_x_log10() + 
+  theme(legend.position = "none") +
+  geom_smooth(method = 'lm') +
+  xlab("Median Household Income 2018") +
+  ylab("Weekly Median Family Childcare") +
+  ggtitle("Childcare Cost vs. Household Income")
+
+lm_res <- lm(mfccsa ~ mhi_2018, data = childcare_costs)
+summary(lm_res)
+```
+
+Visually, it is clear that as median household income increases, so does the cost of weekly median family childcare along with it. The relationship between income and childcare cost is very statistically significant. There is also a resulting p-value of \<2e-16 for the median household income in relation to the cost of weekly family childcare. We can reject the null hypothesis that there is no relationship between the income and the cost of childcare.
