@@ -1,0 +1,122 @@
+
+
+```{r}
+library(tidyverse)
+happiness_data <- read.csv("/Users/rellamas/math_and_algos/R/final/2022.csv")
+```
+```{r}
+# remove empty "xx" country remove dataframe
+happiness_data <- happiness_data[-c(147), ]
+```
+
+
+```{r}
+# convert chr to doubles
+# 1
+happiness_data$Happiness.score <- as.numeric(gsub(",","", happiness_data$Happiness.score))
+# 2
+happiness_data$Explained.by..GDP.per.capita <- as.numeric(gsub(",","", happiness_data$Explained.by..GDP.per.capita))
+# 3
+happiness_data$Explained.by..Social.support <- as.numeric(gsub(",","", happiness_data$Explained.by..Social.support))
+# 4
+happiness_data$Explained.by..Healthy.life.expectancy <- as.numeric(gsub(",","", happiness_data$Explained.by..Healthy.life.expectancy))
+# 5
+happiness_data$Explained.by..Freedom.to.make.life.choices <- as.numeric(gsub(",","", happiness_data$Explained.by..Freedom.to.make.life.choices))
+# 6
+happiness_data$Explained.by..Generosity <- as.numeric(gsub(",","", happiness_data$Explained.by..Generosity))
+# 7 
+happiness_data$Explained.by..Perceptions.of.corruption <- as.numeric(gsub(",","", happiness_data$Explained.by..Perceptions.of.corruption))
+```
+
+
+```{r}
+# gdp per capita
+attach(happiness_data)
+ggplot(data = happiness_data, 
+       aes(Explained.by..GDP.per.capita, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+gdp_res <- lm(Explained.by..GDP.per.capita ~ Happiness.score, data = happiness_data)
+summary(gdp_res)
+# p-value: < 2.2e-16
+# beta 1: 0.29628
+# Adjusted R-squared:  0.5803 
+```
+
+```{r}
+# social support
+attach(happiness_data)
+ggplot(data = happiness_data, 
+       aes(Explained.by..Social.support, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+social_support_res <- lm(Explained.by..Social.support ~ Happiness.score, data = happiness_data)
+summary(social_support_res)
+# p-value: < 2.2e-16
+# beta 1: 0.2005
+# Adjusted R-squared:  0.6024 
+```
+
+```{r}
+# healthy life expectancy
+attach(happiness_data)
+ggplot(data = happiness_data, 
+       aes(Explained.by..Healthy.life.expectancy, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+life_expectancy_res <- lm(Explained.by..Healthy.life.expectancy ~ Happiness.score, data = happiness_data)
+summary(life_expectancy_res)
+# p-value: < 2e-16
+# beta 1: 0.12011
+# Adjusted R-squared:  0.5448 
+```
+
+```{r}
+# freedom to make life choices
+attach(happiness_data)
+ggplot(data = happiness_data, 
+       aes(Explained.by..Freedom.to.make.life.choices, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+freedom_res <- lm(Explained.by..Freedom.to.make.life.choices ~ Happiness.score, data = happiness_data)
+summary(freedom_res)
+# p-value: < 2e-16
+# beta 1: 0.083854
+# Adjusted R-squared:  0.3862 
+```
+
+```{r}
+# generosity
+attach(happiness_data)
+ggplot(data = happiness_data, 
+       aes(Explained.by..Generosity, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+generosity_res <- lm(Explained.by..Generosity ~ Happiness.score, data = happiness_data)
+summary(generosity_res)
+# p-value: 0.4444
+# beta 1: 4.859e-03
+# Adjusted R-squared:  -0.002848 
+```
+
+```{r}
+# perception of corruption
+attach(happiness_data)
+ggplot(data = happiness_data, 
+       aes(Explained.by..Perceptions.of.corruption, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+corruption_res <- lm(Explained.by..Perceptions.of.corruption ~ Happiness.score, data = happiness_data)
+summary(corruption_res)
+# p-value: 1.74e-07
+# beta 1: 0.04883
+# Adjusted R-squared:  0.1675 
+# qqnorm(resid(corruption_res))
+# qqline(resid(corruption_res))
+```
