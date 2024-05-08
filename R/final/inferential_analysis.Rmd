@@ -9,8 +9,34 @@ happiness_data <- read.csv("/Users/rellamas/math_and_algos/R/final/2022.csv")
 happiness_data <- happiness_data[-c(147), ]
 ```
 
+```{r}
+install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", 
+"ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
+```
+```{r}
+library("ggplot2")
+theme_set(theme_bw())
+library("sf")
+library("rnaturalearth")
+library("rnaturalearthdata")
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+```
+
+
 
 ```{r}
+# cleaning
+
+# remove 3 unused columns from happiness df
+drops <- c("Whisker.high", "Whisker.low", "Dystopia..1.83....residual")
+happiness_data <- happiness_data[ , !(names(happiness_data) %in% drops)]
+
+# remove all instances of '*' from happiness df 'happiness score' column
+happiness_data$Country <- as.character(gsub("\\*","", happiness_data$Country))  # regex
+
+
 # convert chr to doubles
 # 1
 happiness_data$Happiness.score <- as.numeric(gsub(",","", happiness_data$Happiness.score))
@@ -35,7 +61,10 @@ attach(happiness_data)
 ggplot(data = happiness_data, 
        aes(Explained.by..GDP.per.capita, Happiness.score)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm) +
+  xlab("GDP per Capita") +
+  ylab("Happiness") +
+  ggtitle("Happiness vs. GDP per Capita")
 
 gdp_res <- lm(Explained.by..GDP.per.capita ~ Happiness.score, data = happiness_data)
 summary(gdp_res)
@@ -50,7 +79,10 @@ attach(happiness_data)
 ggplot(data = happiness_data, 
        aes(Explained.by..Social.support, Happiness.score)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm) +
+  xlab("Social Support") +
+  ylab("Happiness") +
+  ggtitle("Happiness vs. Social Support")
 
 social_support_res <- lm(Explained.by..Social.support ~ Happiness.score, data = happiness_data)
 summary(social_support_res)
@@ -65,7 +97,10 @@ attach(happiness_data)
 ggplot(data = happiness_data, 
        aes(Explained.by..Healthy.life.expectancy, Happiness.score)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm)  +
+  xlab("Healthy Life Expectancy") +
+  ylab("Happiness") +
+  ggtitle("Happiness vs. Healthy Life Expectancy")
 
 life_expectancy_res <- lm(Explained.by..Healthy.life.expectancy ~ Happiness.score, data = happiness_data)
 summary(life_expectancy_res)
@@ -80,7 +115,10 @@ attach(happiness_data)
 ggplot(data = happiness_data, 
        aes(Explained.by..Freedom.to.make.life.choices, Happiness.score)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm) +
+  xlab("Freedom to Make Life Choices") +
+  ylab("Happiness") +
+  ggtitle("Happiness vs. Freedom to Make Life Choices")
 
 freedom_res <- lm(Explained.by..Freedom.to.make.life.choices ~ Happiness.score, data = happiness_data)
 summary(freedom_res)
@@ -95,7 +133,10 @@ attach(happiness_data)
 ggplot(data = happiness_data, 
        aes(Explained.by..Generosity, Happiness.score)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm) +
+  xlab("Generosity") +
+  ylab("Happiness") +
+  ggtitle("Happiness vs. Generosity")
 
 generosity_res <- lm(Explained.by..Generosity ~ Happiness.score, data = happiness_data)
 summary(generosity_res)
@@ -110,7 +151,11 @@ attach(happiness_data)
 ggplot(data = happiness_data, 
        aes(Explained.by..Perceptions.of.corruption, Happiness.score)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm) +
+  xlab("Perception of Corruption") +
+  ylab("Happiness") +
+  ggtitle("Happiness vs. Perception of Corruption") +
+  theme_economist()
 
 corruption_res <- lm(Explained.by..Perceptions.of.corruption ~ Happiness.score, data = happiness_data)
 summary(corruption_res)
@@ -120,3 +165,36 @@ summary(corruption_res)
 # qqnorm(resid(corruption_res))
 # qqline(resid(corruption_res))
 ```
+
+
+```{r}
+
+
+```
+
+```{r}
+# combining happiness, connectedness, and loneliness into one dataframe
+#     will have to remove 4 countries
+df2 <- merge(connected, lonely, by="Country")
+df <- merge(happiness_data, df2)
+# remove all instances of '*' from happiness df 'happiness score' column
+df$Very.Fairly.x <- as.numeric(gsub("\\%","", df$Very.Fairly.x))  # regex
+df$Very.Fairly.y <- as.numeric(gsub("\\%","", df$Very.Fairly.y))  # regex
+
+ggplot(data = df, 
+       aes(Very.Fairly.x, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  xlab("Connected") +
+  ylab("Happiness") +
+  ggtitle("Very Connected vs. Happiness")
+
+ggplot(data = df, 
+       aes(Very.Fairly.y, Happiness.score)) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  xlab("Lonely") +
+  ylab("Happiness") +
+  ggtitle("Very Lonely vs. Happiness")
+```
+
