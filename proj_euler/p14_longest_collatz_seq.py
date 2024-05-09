@@ -3,19 +3,35 @@
 # optimization: 
 #   check_power_of_2 method
 
+# v2: [Finished in 6.6s]
+# put all values encountered in prev iterations into hashmap with corresponding collatz seq len
+
+mymap = dict() # k: number, v: collatz seq length
+
 def collatz_seq_len(start):
+    total_len = 0    # collatz seq len of 'start'
     cur = start
-    seq_len = 0
+    seq = [start]
     while True:
         pow_two = check_power_of_2(cur)
         if pow_two:
-            return seq_len + pow_two
+            total_len = len(seq) + pow_two
+            break
+
+        cur_collatz_len = mymap.get(cur)
+        if cur_collatz_len != None:
+            total_len = len(seq) + cur_collatz_len
+            break
         if cur % 2 == 0:
             cur = int(cur / 2)
         else:
             cur = cur * 3 + 1
-        seq_len += 1
+        seq.append(cur)
 
+    # update hashmap
+    for i in range(len(seq)):
+        mymap.update({seq[i]: total_len - i})
+    return total_len
 
 def check_power_of_2(n):
     """
@@ -26,7 +42,7 @@ def check_power_of_2(n):
     bin_str = str(bin(n))[2:]   # convert n to binary and remove 0b in front
     if (bin_str[0] == '1' and int(bin_str[1:])) == 0:
         power = len(bin_str)
-        return power
+        return power - 1
     return False
 def longest_collatz_seq():
     longest_collatz_len = 0
@@ -39,5 +55,4 @@ def longest_collatz_seq():
     return (longest_collatz_n, longest_collatz_len)
 
 print(longest_collatz_seq())
-# print(collatz_seq_len(9))
-
+# print(collatz_seq_len(13))
