@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc3e1ace-a4ea-4f53-899f-20b40449c66b" name="Changes" comment="p9 - finito">
+      <change afterPath="$PROJECT_DIR$/../leetcode/src/arrays_and_hashing/p347_top_k_frequent_elts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/final/inferential_analysis.Rmd" beforeDir="false" afterPath="$PROJECT_DIR$/../R/final/inferential_analysis.Rmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/labs/Lab_4.Rmd" beforeDir="false" afterPath="$PROJECT_DIR$/../R/labs/Lab_4.Rmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/labs/Lab_4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/labs/Lab_4_files/figure-html/unnamed-chunk-3-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/labs/Lab_4_files/figure-html/unnamed-chunk-4-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/labs/Lab_4_files/figure-html/unnamed-chunk-5-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/labs/Lab_4_files/figure-html/unnamed-chunk-6-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/labs/Lab_4_files/figure-html/unnamed-chunk-7-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../leetcode/out/production/leetcode/arrays_and_hashing/p49_group_anagrams.class" beforeDir="false" afterPath="$PROJECT_DIR$/../leetcode/out/production/leetcode/arrays_and_hashing/p49_group_anagrams.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/p14_longest_collatz_seq.py" beforeDir="false" afterPath="$PROJECT_DIR$/p14_longest_collatz_seq.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,31 +50,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.p5_smallest_multiple.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.p10_sum_primes.executor": "Run",
-    "Python.p11_largest_product_in_grid.executor": "Run",
-    "Python.p14_longest_collatz_seq.executor": "Debug",
-    "Python.p1_multiples_3_and_5.executor": "Run",
-    "Python.p2_even_fibs.executor": "Run",
-    "Python.p3_largest_prime_factor.executor": "Run",
-    "Python.p4_Largest_Palindrome_Product.executor": "Run",
-    "Python.p7_nth_prime.executor": "Run",
-    "Python.p8_largest_product_in_a_series.executor": "Run",
-    "Python.p9_pythag_triples.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/rellamas/math_and_algos/proj_euler",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.toDoOptions"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.p5_smallest_multiple.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p10_sum_primes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p11_largest_product_in_grid.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p14_longest_collatz_seq.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p1_multiples_3_and_5.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p2_even_fibs.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p3_largest_prime_factor.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p4_Largest_Palindrome_Product.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p7_nth_prime.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p8_largest_product_in_a_series.executor&quot;: &quot;Run&quot;,
+    &quot;Python.p9_pythag_triples.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/rellamas/math_and_algos/proj_euler&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.toDoOptions&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/p9_special_pythag_triple" />
@@ -322,11 +331,6 @@
           <url>file://$PROJECT_DIR$/p10_sum_primes.py</url>
           <line>46</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/p14_longest_collatz_seq.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

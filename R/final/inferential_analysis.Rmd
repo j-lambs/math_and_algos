@@ -154,8 +154,7 @@ ggplot(data = happiness_data,
   geom_smooth(method = lm) +
   xlab("Perception of Corruption") +
   ylab("Happiness") +
-  ggtitle("Happiness vs. Perception of Corruption") +
-  theme_economist()
+  ggtitle("Happiness vs. Perception of Corruption")
 
 corruption_res <- lm(Explained.by..Perceptions.of.corruption ~ Happiness.score, data = happiness_data)
 summary(corruption_res)
@@ -168,8 +167,19 @@ summary(corruption_res)
 
 
 ```{r}
+# low corruption, low happiness
+#TODO 
+# maybe do some analysis on these countries
+# like see what other factors of happiness they are lacking in 
+lo_corruption_lo_happy <- happiness_data %>% 
+  filter(Happiness.score < median(Happiness.score)) %>% 
+  filter(Explained.by..Perceptions.of.corruption < 200)
+print(median(happiness_data$Happiness.score))
+print(median(happiness_data$Explained.by..Perceptions.of.corruption))
 
-
+ggplot(data = lo_corruption_lo_happy, 
+       aes(Explained.by..Perceptions.of.corruption, Happiness.score)) +
+  geom_point()
 ```
 
 ```{r}
@@ -197,4 +207,24 @@ ggplot(data = df,
   ylab("Happiness") +
   ggtitle("Very Lonely vs. Happiness")
 ```
+
+```{r}
+# 3
+ggplot(data = df, 
+       aes(Very.Fairly.y, Explained.by..GDP.per.capita)) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  xlab("Loneliness") +
+  ylab("GDP per Capita") +
+  ggtitle("Very Lonely vs. GDP per Capita")
+
+ggplot(data = df, 
+       aes(Very.Fairly.y, Explained.by..Healthy.life.expectancy)) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  xlab("Loneliness") +
+  ylab("Healthy Life Expectancy") +
+  ggtitle("Very Lonely vs. Healthy Life Expectancy")
+```
+
 

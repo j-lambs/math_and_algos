@@ -1,0 +1,33 @@
+---
+title: "Review exercises"
+author: "Jack Rellamas"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-summary: "Code"
+output: pdf_document
+---
+
+Note that the following exercises are more involved than the kinds of questions you will see on the exam, but test the same types of probability and statistics concepts.
+
+1.  You want to gather data to determine which of two students is a better basketball shooter. You plan to have each student take N shots and then compare their shooting percentages. Roughly how large does N have to be for you to have a good chance of distinguishing a 30% shooter from a 40% shooter? (via Elden Griggs).
+
+```{r}
+n <- 100
+p1 <- .3
+p2 <- .4
+alpha <- .05
+power <- .8   # probability that we reject H0 when it is false
+
+
+
+
+
+```
+
+1.  Let $X\sim N(0,1)$ and for $i=1,\ldots, n$, let $Y_i\sim N(X, 1)$. Thus, $Y_1,\ldots, Y_n$ are all identically distributed, but dependent random variables. Show that in general, a typical large-sample 95% confidence interval for the mean $E(Y_i)$ will not achieve the desired coverage rates.
+
+2.  The original Monty Hall problem is a famous probability puzzle: "Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?" Write code to simulate this situation and show that switching is advantageous.
+
+3.  Suppose $X_1,\ldots, X_n\sim N(0, 1)$ and $Y\sim N(X, 1)$. Use simulation to approximate the sampling distribution of $\beta_1$ when fitting the model $Y=\beta_0+\beta_1 x+\epsilon$ where $\epsilon\sim N(0, \sigma^2)$.

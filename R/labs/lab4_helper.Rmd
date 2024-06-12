@@ -1,13 +1,16 @@
 ---
-title: "Lab 4: Data Visualization"
+title: 'Lab 4: Data Visualization'
 author: "Jack Rellamas"
 date: "02-29-2024"
-format: 
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+format:
   html:
     embed-resources: true
     code-tools: true
-    code-summary: "Code"
-output: pdf_document
+    code-summary: Code
 ---
 
 Remember, **follow the instructions below and use R Markdown to create a pdf document with your code and answers to the following questions on Gradescope.** You may find a template file by clicking "Code" in the top right corner of this page.
@@ -139,7 +142,7 @@ ggplot(data = sc_1b_2018,
   geom_histogram()
 ```
 
-The most common price for rent in 2005 was around \$800. In 2018, the most common pricing for a one bedroom apartment in Santa Clara county had jumped to around \$2000. \The price distribution in 2005 is more right skewed meaning there were more apartment available on the affordable side of the market. The price distribution in 2018 is more normally distributed.
+The most common price for rent in 2005 was around \$800. In 2018, the most common pricing for a one bedroom apartment in Santa Clara county had jumped to around \$2000. The price distribution in 2005 is more right skewed meaning there were more apartment available on the affordable side of the market. The price distribution in 2018 is more normally distributed.
 
 8.  Create and interpret a line plot with year on the x-axis and median price for a 1 bedroom apartment for Santa Clara county on the y-axis from 2000 to 2018.
 

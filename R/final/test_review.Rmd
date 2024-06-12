@@ -1,0 +1,123 @@
+---
+title: "old_final_review"
+author: "jrellamas"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+# 1A
+mystery <- function(x) {
+  if (x == 1) {
+    return (x**2)
+  } else {
+    return (x**2 + mystery(x - 1))
+  }
+}
+
+mystery2 <- function(x) {
+  sum <- 0
+  while(x > 1) {
+    sum <- sum + x**2
+    x <- x - 1
+  }
+  sum <- sum + 1
+  return(sum)
+}
+
+mystery2(4)
+```
+
+```{r}
+# 2
+# a, b, and c are equivalent, d is different
+
+```
+
+```{r}
+# 3
+# if i is divisible by both 3 and 5, it will print out all of "fizz", "buzz", and "fizzbuzz", when we only want "fizzbuzz"
+  
+```
+
+```{r}
+# 4
+set.seed(2718281)
+rvector <- rnorm(10000, mean = 80, sd = 3)
+hist(rvector)
+
+```
+
+```{r}
+# remove na rows
+clean <- penguins[complete.cases(penguins), ]
+
+# 5a: which of these is not the same?
+penguins <- palmerpenguins::penguins
+five_a <- penguins$body_mass_g
+five_b <- penguins[, "body_mass_g"]
+# five_c <- penguins[body_mass_g]
+five_d <- penguins[["body_mass_g"]]
+# C is the odd one out, not a valid expression, needs quotation marks
+
+#5b
+# append() appends elts to a vector
+# answer: B
+penguins <- penguins |> 
+  mutate(body_mass_kg = body_mass_g / 1000)
+
+#5c
+clean |> group_by(species) |> summarize(mean_mass = mean(body_mass_g))
+
+#5d: Write a line of code that will create a new data frame called adelie containing only the rows of penguins for which the value of the species column is "Adelie"
+
+# asks how to use filter()
+adelie <- penguins %>% 
+  filter(species == "Adelie")
+
+```
+
+```{r}
+# 6
+# asks how to interpret a quantile-quantile plot
+hist(penguins$body_mass_g)
+# the data for penguins body mass does not appear to be normally distributed, as many of the points on the QQ plot do not fall on the straight line
+```
+
+```{r}
+# 7
+# The claim that there is a negative association between paper color and exam score cannot be made. Color is a qualitative variable in this dataset. The original claim does not make it clear how the colors are ranked or graded. A negative association should be made between two quantitative variables.
+```
+
+```{r}
+# 8
+dat <- data.frame(time = c(6, 7, 8, 6, 7, 8),
+                  temp = c(54, 57, 59, 40, 41, 42),
+                  mth = c(rep("October", 3), rep("December", 3)))
+
+ggplot(dat, aes(x = time, y = temp, linetype = mth)) +
+  geom_line()
+
+```
+
+```{r}
+# 9
+# Bar plot / chart for vizualizing relationship between categorical variable and numerical variable
+```
+
+```{r}
+# 10
+run_one_sim <- function(n) {
+X <- rexp(n)
+hist(X)
+print((abs(mean(X) - 1)))
+print(1.96 * sd(X) / sqrt(n))
+return(abs(mean(X) - 1) < 1.96 * sd(X) / sqrt(n))
+}
+run_one_sim(1000)
+```
