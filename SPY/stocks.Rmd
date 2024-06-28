@@ -39,13 +39,13 @@ SPY$Adj.Close <- as.double(SPY$Adj.Close)
 SPY$Volume <- as.integer(SPY$Volume)
 
 
-old <- SPY$Open[1]
+old <- SPY$Open[length(SPY[[1]]) - 90]
 new <- SPY$Close[length(SPY[[1]])]
 p_change_normal <- ( new - old ) / old
 glue('3Y % Change: {p_change_normal}')
 overnight_vect <- c()
 overnight_percent_change_vect <- c()
-for (i in 1:length(SPY[[1]])) {
+for (i in (length(SPY[[1]]) - 90):length(SPY[[1]])) {
   close <- SPY$Close[i]
   next_open <- SPY$Open[i + 1]
   if (!is.na(next_open)) {
