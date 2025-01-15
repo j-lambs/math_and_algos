@@ -1,0 +1,18 @@
+    This program is intended to use a monte carlo method to approximated the 
+value of the mathematical constant, pi.
+
+Goal: Demonstate that the ratio between the area of the unit circle and the 
+square surrounding it, not including the area in the unit circle, converges
+to pi.
+It uses the fact that the ratio of the area inside a unit circle and a 
+square surrounding the unit circle (with length = 2 units) is pi / 4.
+
+Let X ~ Uniform(low = -1, high = 1)
+Let Y ~ Uniform(low = -1, high = 1)
+Repeatedly generate random numbers from both X & Y, n times.
+The ratio between the points (x_i, y_i) that are within the circle
+to points outside the circle approximates to the true ratio pi / 4.
+Therefore pi can be approximated by 4 * sample-ratio.
+
+Inspired by:
+https://en.wikipedia.org/wiki/Monte_Carlo_method#Overview

@@ -1,8 +1,17 @@
-/* Python Dictionary / HashMaps
+/* Python Dictionary = HashMap
 
 Initialize:
 myDictionary = {}
 
+Check if key in dict:
+key in dict
+*/
 
+/* Set Comprehension
+new_set = {x for x in my_set if condition}
 
+*/
+
+/* You can pop python lists
+list.pop() # pops end of list
 */
