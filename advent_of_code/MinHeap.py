@@ -26,6 +26,9 @@ class MinHeap:
 
     def extract_min(self):
         min = self.heap[1]
+        if len(self.heap) == 2:
+            self.heap.pop()
+            return min
 
         # move last val in heap to front, and keep swapping him down until in correction position
         last_val = self.heap[-1]
@@ -64,3 +67,6 @@ class MinHeap:
         for i in self.heap:
             temp_display_list.append(i)
         print(temp_display_list)
+
+    def get_len(self):
+        return len(self.heap)
