@@ -57,6 +57,7 @@ class MinHeap:
                 else:
                     self.heap[i] = right_val
                     i = right_i
+                self.heap[i] = dmw
         return min
 
     def get_min(self):

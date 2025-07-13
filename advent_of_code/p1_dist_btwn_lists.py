@@ -9,7 +9,6 @@ with open("advent_of_code/p1_sample_input.txt") as f:
     h1.add_node(first_int)
     h2.add_node(second_int)
     
-#TODO: fix MinHeap.extract_min() in case of h2
 h1.display()
 h2.display()
 total_dist = 0
