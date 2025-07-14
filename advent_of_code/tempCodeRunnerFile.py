@@ -1,0 +1,1 @@
+h1 = MinHeap(heap=[0])
