@@ -9,7 +9,7 @@ def get_dist_btwn_lists(h1, h2) -> int:
     total_dist += dist
   return total_dist
 
-with open("advent_of_code/problem1_input.txt") as f:
+with open("advent_of_code/p1_input.txt") as f:
   h1 = MinHeap(heap=[0])
   h2 = MinHeap(heap=[0])
   for line in f:
