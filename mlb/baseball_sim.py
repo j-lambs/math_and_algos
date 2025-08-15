@@ -53,4 +53,17 @@ for i in range(30):
     teams.append(Team(hitters=hitters, pitchers=pitchers))
 print(teams)
 
+#TODO: add a "starting order" parameter
+# for now, assume start at top of the lineup
+def play_inning(pitcher:Pitcher, hitters:list):
+    era = pitcher.get_era()
+    era_one_inning = era / 9
 
+    gameover = False
+    i = 0
+    while not gameover:
+        ba = hitters[i].get_ba()
+
+#TODO # have team 1 & team 30 play
+# def play_game(t1, t2):
+    
